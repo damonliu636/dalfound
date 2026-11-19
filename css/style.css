@@ -1,0 +1,62 @@
+/* Shared styles for every DalFound page. Desktop only (1366px and wider). */
+
+:root {
+  --dal-gold: #ffd400;
+  --dark: #242424;
+  --light: #f5f5f5;
+  --border: #d0d0d0;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--dark);
+  background: var(--light);
+}
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 40px;
+  background: var(--dark);
+  border-bottom: 4px solid var(--dal-gold);
+}
+
+.site-header .logo {
+  color: var(--dal-gold);
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.site-header nav a {
+  color: white;
+  margin-left: 24px;
+  text-decoration: none;
+}
+
+.site-header nav a:hover { text-decoration: underline; }
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 40px;
+  min-height: 70vh;
+}
+
+.placeholder {
+  padding: 24px;
+  border: 2px dashed var(--border);
+  background: white;
+  color: #666;
+}
+
+.site-footer {
+  text-align: center;
+  padding: 16px;
+  color: #666;
+  font-size: 0.85rem;
+}

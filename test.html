@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DalFound – Database test</title>
+</head>
+<body>
+  <p id="out">Testing database…</p>
+  <script type="module">
+    import { firebaseConfig, FIREBASE_VERSION } from "./js/firebase-config.js";
+    const out = document.getElementById("out");
+    try {
+      const base = `https://www.gstatic.com/firebasejs/${FIREBASE_VERSION}`;
+      const { initializeApp } = await import(`${base}/firebase-app.js`);
+      const { getFirestore, addDoc, getDoc, collection, serverTimestamp } =
+        await import(`${base}/firebase-firestore.js`);
+
+      const db = getFirestore(initializeApp(firebaseConfig));
+      const ref = await addDoc(collection(db, "test"), { msg: "hello", at: serverTimestamp() });
+      const snap = await getDoc(ref);
+      out.textContent = "Success! Read back: " + JSON.stringify(snap.data());
+    } catch (err) {
+      out.textContent = "Failed: " + err.message;
+    }
+  </script>
+</body>
+</html>
