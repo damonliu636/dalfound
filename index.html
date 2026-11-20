@@ -18,8 +18,55 @@
 
   <main>
     <h1>Found items</h1>
-    <p class="placeholder">Browse page – coming soon (WBS 1.2.1, 1.2.2, claim pop-up 1.3.1)</p>
-    <!-- Feature code for this page goes here -->
+    <p class="placeholder">Item list and filters – coming soon (WBS 1.2.1, 1.2.2). The sample cards below open the claim pop-up.</p>
+
+    <!-- Sample cards for the claim pop-up. WBS 1.2.1 replaces this list. -->
+    <div id="item-list" class="item-list">
+      <article class="item-card" data-item-id="sample-keys">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='200'%3E%3Crect width='320' height='200' fill='%23d9e8f5'/%3E%3Ctext x='160' y='108' text-anchor='middle' font-family='Arial' font-size='28' fill='%23242424'%3EKeys%3C/text%3E%3C/svg%3E" alt="Set of keys">
+        <p class="item-category">Keys</p>
+        <button type="button" class="claim-button">This is mine</button>
+      </article>
+
+      <article class="item-card" data-item-id="sample-bottle">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='200'%3E%3Crect width='320' height='200' fill='%23d9f0df'/%3E%3Ctext x='160' y='108' text-anchor='middle' font-family='Arial' font-size='28' fill='%23242424'%3EWater bottle%3C/text%3E%3C/svg%3E" alt="Green water bottle">
+        <p class="item-category">Water Bottles &amp; Containers</p>
+        <button type="button" class="claim-button">This is mine</button>
+      </article>
+    </div>
+
+    <dialog id="claim-dialog" class="claim-dialog">
+      <form id="claim-form" novalidate>
+        <div class="claim-header">
+          <h2>Claim this item</h2>
+          <button type="button" id="claim-close">Close</button>
+        </div>
+
+        <img id="claim-photo" alt="">
+        <p id="claim-category" class="item-category"></p>
+        <p class="claim-note">Staff will email you to arrange pickup and will check your ID in person.</p>
+
+        <p id="claim-message" class="form-message" hidden></p>
+
+        <div class="form-field">
+          <label for="claim-name">Name</label>
+          <input id="claim-name" name="name" type="text" autocomplete="name">
+        </div>
+
+        <div class="form-field">
+          <label for="claim-email">Contact email</label>
+          <input id="claim-email" name="email" type="email" autocomplete="email">
+        </div>
+
+        <div class="form-field">
+          <label for="claim-detail">Specific detail</label>
+          <textarea id="claim-detail" name="detail" rows="3"></textarea>
+          <span class="field-hint">Describe something only the owner would know.</span>
+        </div>
+
+        <button type="submit">Send claim</button>
+      </form>
+    </dialog>
   </main>
 
   <footer class="site-footer">

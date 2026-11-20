@@ -54,6 +54,57 @@ main {
   color: #666;
 }
 
+/* ---------- Item list + claim dialog (feature/claim-form) ---------- */
+
+.item-list {
+  display: flex;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.item-card {
+  width: 280px;
+  padding: 16px;
+  background: white;
+  border: 1px solid var(--border);
+}
+
+.item-card img,
+.claim-dialog img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  background: #ececec;
+}
+
+.item-category {
+  margin: 12px 0;
+  font-weight: bold;
+}
+
+.claim-dialog {
+  width: 480px;
+  padding: 0;
+  border: none;
+}
+
+.claim-dialog::backdrop { background: rgba(0, 0, 0, 0.45); }
+
+.claim-dialog form { padding: 24px 28px; }
+
+.claim-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.claim-header h2 { margin: 0; }
+
+.claim-note { margin-top: 0; }
+
+/* ---------- Post-an-item form (main) ---------- */
+
 .reminders {
   max-width: 560px;
   margin-bottom: 20px;
@@ -75,6 +126,8 @@ main {
   border: 1px solid var(--border);
 }
 
+/* ---------- Shared form styles ---------- */
+
 .form-field {
   display: flex;
   flex-direction: column;
@@ -87,11 +140,18 @@ main {
 }
 
 .form-field input,
+.form-field textarea,
 .form-field select {
   padding: 8px 10px;
   border: 1px solid var(--border);
   font: inherit;
   background: white;
+}
+
+.field-hint {
+  margin-top: 6px;
+  color: #666;
+  font-size: 0.85rem;
 }
 
 .form-message {
@@ -111,6 +171,9 @@ main {
   color: #145c2a;
 }
 
+/* Dark buttons used by both the claim form and the post form */
+.claim-button,
+.claim-dialog button,
 .post-form button {
   padding: 10px 18px;
   border: none;
@@ -120,6 +183,8 @@ main {
   cursor: pointer;
 }
 
+.claim-button:hover,
+.claim-dialog button:hover,
 .post-form button:hover { background: #000; }
 
 .site-footer {
