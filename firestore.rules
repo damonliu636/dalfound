@@ -1,0 +1,77 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Public users can browse available items and submit found items.
+    match /items/{itemId} {
+      allow read: if resource.data.status == "available";
+
+      allow create: if
+        request.resource.data.keys().hasAll([
+          "category",
+          "locationFound",
+          "dateFound",
+          "dropOff",
+          "photo",
+          "status",
+          "postedAt"
+        ]) &&
+        request.resource.data.keys().hasOnly([
+          "category",
+          "locationFound",
+          "dateFound",
+          "dropOff",
+          "photo",
+          "status",
+          "postedAt"
+        ]) &&
+        request.resource.data.category is string &&
+        request.resource.data.locationFound is string &&
+        request.resource.data.dateFound is string &&
+        request.resource.data.dropOff is string &&
+        request.resource.data.photo is string &&
+        request.resource.data.status == "available" &&
+        request.resource.data.postedAt == request.time;
+
+      // Liam will add authenticated staff permissions in WBS 1.4.1.
+      allow update, delete: if false;
+    }
+
+    // Public users can submit claims but cannot view them.
+    match /claims/{claimId} {
+      allow create: if
+        request.resource.data.keys().hasAll([
+          "itemId",
+          "name",
+          "email",
+          "detail",
+          "submittedAt"
+        ]) &&
+        request.resource.data.keys().hasOnly([
+          "itemId",
+          "name",
+          "email",
+          "detail",
+          "submittedAt"
+        ]) &&
+        request.resource.data.itemId is string &&
+        request.resource.data.name is string &&
+        request.resource.data.email is string &&
+        request.resource.data.detail is string &&
+        request.resource.data.submittedAt == request.time;
+
+      allow read, update, delete: if false;
+    }
+
+    // The database connection test is complete.
+    match /test/{document=**} {
+      allow read, write: if false;
+    }
+
+    // Deny access to every unspecified collection.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

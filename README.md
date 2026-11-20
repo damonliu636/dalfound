@@ -36,6 +36,19 @@ Live site: https://<jett-moore>.github.io/dalfound/
 
 No field stores ID numbers or student numbers.
 
+## Firebase setup
+
+- Firebase project ID: `dalfound-ff5ce`
+- Cloud Firestore database: `(default)`
+- Firestore location: `northamerica-northeast1` (Montréal)
+- Firebase JavaScript SDK: `13.4.0`
+- Email/password authentication is enabled for the staff login.
+- The Firebase web configuration is stored in `js/firebase-config.js`.
+- Firestore security rules are stored in `firestore.rules`.
+- Database write/read connectivity was successfully tested on November 20, 2026.
+- The initial Firestore test mode has been disabled.
+- Staff read and update permissions will be added as part of WBS 1.4.1.
+
 ## How we work
 
 - `main` is protected: create a branch per feature, open a pull request, and get one review before merging.
