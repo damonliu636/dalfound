@@ -1,15 +1,14 @@
 // Firebase connection settings.
-// Paste the values from Firebase console → Project settings → Your apps → Web app.
-// This is safe to commit: data is protected by Firestore rules, not by this key.
+// This web configuration is safe to commit because access is protected by Firestore rules.
 
 export const firebaseConfig = {
-  apiKey: "PASTE_HERE",
-  authDomain: "PASTE_HERE",
-  projectId: "PASTE_HERE",
-  storageBucket: "PASTE_HERE",
-  messagingSenderId: "PASTE_HERE",
-  appId: "PASTE_HERE",
+  apiKey: "AIzaSyBCviC-Es5qETzsmIm5OGxBjWr2cX74oss",
+  authDomain: "dalfound-ff5ce.firebaseapp.com",
+  projectId: "dalfound-ff5ce",
+  storageBucket: "dalfound-ff5ce.firebasestorage.app",
+  messagingSenderId: "566619648736",
+  appId: "1:566619648736:web:9f86c470941314e4395685",
+  measurementId: "G-2WKV8ZTW7V",
 };
 
-// Firebase SDK version from the console's setup snippet (e.g. "11.0.0").
-export const FIREBASE_VERSION = "PASTE_HERE";
+export const FIREBASE_VERSION = "13.4.0";
