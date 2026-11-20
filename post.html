@@ -18,8 +18,42 @@
 
   <main>
     <h1>Post a found item</h1>
-    <p class="placeholder">Post form – coming soon (WBS 1.1.1, 1.1.2)</p>
-    <!-- Feature code for this page goes here -->
+
+    <div class="reminders">
+      <p>Drop the item off at a drop-off location before you post it.</p>
+      <p>Photos must not show personal information, such as a name, face, card number, or address.</p>
+    </div>
+
+    <form id="post-form" class="post-form" novalidate>
+      <p id="form-message" class="form-message" hidden></p>
+
+      <div class="form-field">
+        <label for="photo">Photo</label>
+        <input id="photo" name="photo" type="file" accept=".jpg,.jpeg,.png,image/jpeg,image/png">
+      </div>
+
+      <div class="form-field">
+        <label for="category">Category</label>
+        <select id="category" name="category"></select>
+      </div>
+
+      <div class="form-field">
+        <label for="location-found">Location found</label>
+        <select id="location-found" name="locationFound"></select>
+      </div>
+
+      <div class="form-field">
+        <label for="date-found">Date found</label>
+        <input id="date-found" name="dateFound" type="date">
+      </div>
+
+      <div class="form-field">
+        <label for="drop-off">Drop-off location</label>
+        <select id="drop-off" name="dropOff"></select>
+      </div>
+
+      <button type="submit">Post item</button>
+    </form>
   </main>
 
   <footer class="site-footer">
