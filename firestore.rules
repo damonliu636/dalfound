@@ -3,6 +3,12 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
+    // WBS 1.4.1 - Check if the signed-in user is staff.
+    function isStaff() {
+      return request.auth != null &&
+        exists(/databases/$(database)/documents/staff/$(request.auth.uid));
+    }
+    
     // Public users can browse available items and submit found items.
     match /items/{itemId} {
       allow read: if resource.data.status == "available";
@@ -34,8 +40,15 @@ service cloud.firestore {
         request.resource.data.status == "available" &&
         request.resource.data.postedAt == request.time;
 
-      // Liam will add authenticated staff permissions in WBS 1.4.1.
-      allow update, delete: if false;
+      // WBS 1.4.1 - Auth. staff can view all items
+      allow read: if isStaff();
+
+      // WBS 1.4.1 - Only staff can change item status
+      allow update: if isStaff() &&
+      request.resource.data.diff(resource.data).affectedKeys().hasOnly(["status"]) &&
+      request.resource.data.status in ["returned", "removed"];
+
+      allow delete: if false;
     }
 
     // Public users can submit claims but cannot view them.
@@ -61,7 +74,17 @@ service cloud.firestore {
         request.resource.data.detail is string &&
         request.resource.data.submittedAt == request.time;
 
-      allow read, update, delete: if false;
+      // WBS 1.4.1 - Only authenticated staff can read claims
+      allow read: if isStaff();
+      
+      allow update, delete: if false;
+    }
+
+    //WBS 1.4.1 - Staff account permissions
+    match /staff/{uid} {
+    allow read: if request.auth != null && request.auth.uid == uid;
+    allow write: if false; 
+    
     }
 
     // The database connection test is complete.
