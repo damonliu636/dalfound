@@ -18,22 +18,28 @@
 
   <main>
     <h1>Found items</h1>
-    <p class="placeholder">Item list and filters – coming soon (WBS 1.2.1, 1.2.2). The sample cards below open the claim pop-up.</p>
-
-    <!-- Sample cards for the claim pop-up. WBS 1.2.1 replaces this list. -->
-    <div id="item-list" class="item-list">
-      <article class="item-card" data-item-id="sample-keys">
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='200'%3E%3Crect width='320' height='200' fill='%23d9e8f5'/%3E%3Ctext x='160' y='108' text-anchor='middle' font-family='Arial' font-size='28' fill='%23242424'%3EKeys%3C/text%3E%3C/svg%3E" alt="Set of keys">
-        <p class="item-category">Keys</p>
-        <button type="button" class="claim-button">This is mine</button>
-      </article>
-
-      <article class="item-card" data-item-id="sample-bottle">
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='200'%3E%3Crect width='320' height='200' fill='%23d9f0df'/%3E%3Ctext x='160' y='108' text-anchor='middle' font-family='Arial' font-size='28' fill='%23242424'%3EWater bottle%3C/text%3E%3C/svg%3E" alt="Green water bottle">
-        <p class="item-category">Water Bottles &amp; Containers</p>
-        <button type="button" class="claim-button">This is mine</button>
-      </article>
-    </div>
+        <!-- Filters (WBS 1.2.2) -->
+        <section class="filters">
+          <label>
+            Category
+            <select id="filter-category">
+              <option value="">All categories</option>
+            </select>
+          </label>
+    
+          <label>
+            Location found
+            <select id="filter-location">
+              <option value="">All locations</option>
+            </select>
+          </label>
+    
+          <button type="button" id="clear-filters">Clear filters</button>
+        </section>
+    
+        <!-- Item listing (WBS 1.2.1). Cards are added by js/listing.js. -->
+        <p id="empty-message" hidden></p>
+        <div id="item-list" class="item-list"></div>
 
     <dialog id="claim-dialog" class="claim-dialog">
       <form id="claim-form" novalidate>
@@ -74,5 +80,6 @@
   </footer>
 
   <script type="module" src="js/browse.js"></script>
+  <script type="module" src="js/listing.js"></script>
 </body>
 </html>
